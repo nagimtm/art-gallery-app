@@ -6,6 +6,8 @@ import useRouter from "next/router";
 export default function SpotLightPage() {
   const URL = "https://example-apis.vercel.app/api/art";
 
+  const router = useRouter();
+
   const { data: pieces, error, isLoading } = useSWR(URL);
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
