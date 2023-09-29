@@ -11,8 +11,6 @@ export default function SpotLightPage() {
   if (isLoading) return <div>loading...</div>;
   if (!pieces) return;
 
-  console.log(pieces);
-
   function randomArt(maxNum) {
     const randomArtindex = Math.floor(Math.random() * maxNum);
     return pieces[randomArtindex];
