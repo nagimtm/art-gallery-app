@@ -1,27 +1,17 @@
 import useSWR from "swr";
-import ArtPieces from "@/Components/artPieces";
 import { Spotlight } from "@/Components/spotlight/Spotlight";
+import Navigation from "@/Components/navigation/Navigation";
+import useRouter from "next/router";
 
-export default function HomePage() {
+export default function SpotLightPage() {
   const URL = "https://example-apis.vercel.app/api/art";
-  const fetcher = async (url) => {
-    const res = await fetch(url);
 
-    // If the status code is not in the range 200-299,
-    // we still try to parse and throw it.
-    if (!res.ok) {
-      const error = new Error("An error occurred while fetching the data.");
-      // Attach extra info to the error object.
-      error.info = await res.json();
-      error.status = res.status;
-      throw error;
-    }
-
-    return res.json();
-  };
-  const { data: pieces, error, isLoading } = useSWR(URL, fetcher);
+  const { data: pieces, error, isLoading } = useSWR(URL);
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
+  if (!pieces) return;
+
+  console.log(pieces);
 
   function randomArt(maxNum) {
     const randomArtindex = Math.floor(Math.random() * maxNum);
@@ -29,10 +19,8 @@ export default function HomePage() {
   }
   const piecesArrayLength = pieces.length;
   const randomPieceObj = randomArt(piecesArrayLength);
-
   return (
     <>
-      <ArtPieces pieces={pieces} />
       <Spotlight randomPieceObj={randomPieceObj} />
     </>
   );
