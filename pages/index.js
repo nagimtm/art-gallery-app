@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import ArtPieces from "@/Components/artPieces";
+import { Spotlight } from "@/Components/spotlight/Spotlight";
 
 export default function HomePage() {
   const URL = "https://example-apis.vercel.app/api/art";
@@ -22,10 +23,17 @@ export default function HomePage() {
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
-  console.log(pieces);
+  function randomArt(maxNum) {
+    const randomArtindex = Math.floor(Math.random() * maxNum);
+    return pieces[randomArtindex];
+  }
+  const piecesArrayLength = pieces.length;
+  const randomPieceObj = randomArt(piecesArrayLength);
+
   return (
     <>
       <ArtPieces pieces={pieces} />
+      <Spotlight randomPieceObj={randomPieceObj} />
     </>
   );
 }
