@@ -1,13 +1,13 @@
 import ArtPiecesPreview from "../artPiecesPreview";
-
+import Link from "next/link";
 export default function ArtPieces({ pieces }) {
-  console.log(pieces);
-
   return (
     <ul>
       {pieces.map((piece) => (
         <li key={piece.slug}>
-          <ArtPiecesPreview piece={piece} />
+          <Link href={`/art-pieces/${piece.slug}`} piece={piece}>
+            <ArtPiecesPreview piece={piece} />
+          </Link>
         </li>
       ))}
     </ul>
