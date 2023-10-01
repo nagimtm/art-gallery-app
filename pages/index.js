@@ -1,16 +1,6 @@
-import useSWR from "swr";
-import { Spotlight } from "@/Components/spotlight/Spotlight";
-import { useState } from "react";
+import { Spotlight } from "@/Components/spotlight";
 
-export default function SpotLightPage() {
-  const [artPiecesInfo, setArtPiecesInfo] = useState();
-  const URL = "https://example-apis.vercel.app/api/art";
-
-  const { data: pieces, error, isLoading } = useSWR(URL);
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
-  if (!pieces) return;
-
+export default function SpotLightPage({ pieces }) {
   function randomArt(maxNum) {
     const randomArtindex = Math.floor(Math.random() * maxNum);
     return pieces[randomArtindex];
