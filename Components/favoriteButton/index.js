@@ -2,13 +2,9 @@ import { styled } from "styled-components";
 import Image from "next/image";
 
 const Button = styled.button``;
-export default function FavoriteButton({
-  slug,
-  isFavorite,
-  handleToggleFavorite,
-}) {
+export default function FavoriteButton({ isFavorite, onToggleFavorite }) {
   return (
-    <Button onClick={() => handleToggleFavorite(slug)} slug={slug}>
+    <Button onClick={onToggleFavorite}>
       <Image
         src="../../resources/assets/heart.svg"
         width={20}

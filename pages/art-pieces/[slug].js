@@ -1,17 +1,30 @@
-import ArtPieceDetails from "@/Components/artPieceDetails";
+import ArtPieceDetails from "@/Components/ArtPieceDetails";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
-export default function Details({ pieces }) {
+export default function ArtPieceDetailsPage({
+  pieces,
+  artPiecesInfo,
+  onToggleFavorite,
+}) {
+  const [artDetailViewer, setArtDetailViewer] = useState(null);
   const router = useRouter();
   const { slug } = router.query;
-  const artDetail = pieces.find((piece) => piece.slug === slug);
+  useEffect(() => {
+    setArtDetailViewer(pieces.find((piece) => piece.slug === slug));
+  }, [slug, pieces, setArtDetailViewer]);
   return (
     <ArtPieceDetails
-      imageSource={artDetail.imageSource}
-      title={artDetail.title}
-      artist={artDetail.artist}
-      year={artDetail.year}
-      genre={artDetail.genre}
+      imageSource={artDetailViewer?.imageSource}
+      title={artDetailViewer?.title}
+      artist={artDetailViewer?.artist}
+      year={artDetailViewer?.year}
+      genre={artDetailViewer?.genre}
+      isFavorite={
+        artPiecesInfo.find((piece) => piece.slug === artDetailViewer?.slug)
+          ?.isFavorite
+      }
+      onToggleFavorite={() => onToggleFavorite(artDetailViewer.slug)}
     />
   );
 }

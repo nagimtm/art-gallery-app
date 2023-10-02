@@ -5,7 +5,8 @@ import FavoriteButton from "../FavoriteButton";
 export function Spotlight({
   randomPieceObj,
   isFavorite,
-  handleToggleFavorite,
+  onToggleFavorite,
+  artPiecesInfo,
 }) {
   const { imageSource, artist, slug } = randomPieceObj;
   // console.log(slug);
@@ -14,8 +15,10 @@ export function Spotlight({
       <h1>Hi from SpotLight</h1>
       <FavoriteButton
         slug={slug}
-        isFavorite={isFavorite}
-        handleToggleFavorite={handleToggleFavorite}
+        isFavorite={
+          artPiecesInfo.find((piece) => piece.slug === slug)?.isFavorite
+        }
+        onToggleFavorite={() => onToggleFavorite(slug)}
       />
       <p>{artist}</p>
       <Image

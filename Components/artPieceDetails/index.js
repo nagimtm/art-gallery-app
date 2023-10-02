@@ -9,15 +9,15 @@ export default function ArtPieceDetails({
   artist,
   year,
   genre,
-  // isFavorite,
-  // onToggleFavorite,
+  isFavorite,
+  onToggleFavorite,
 }) {
   return (
     <li key={slug}>
       <h2>{title}</h2>
       <FavoriteButton
-      // isFavorite={isFavorite}
-      // onToggleFavorite={onToggleFavorite}
+        isFavorite={isFavorite}
+        onToggleFavorite={() => onToggleFavorite(slug)}
       />
       <Image src={imageSource} alt="img_title" height={144} width={144}></Image>
       <p>{artist}</p>

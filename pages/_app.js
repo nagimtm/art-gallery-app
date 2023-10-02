@@ -1,10 +1,14 @@
-import Layout from "@/Components/layout/Layout";
+import Layout from "@/Components/Layout/Layout";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
-import { useState } from "react";
+// import { useImmerLocalStorageState } from "./useImmerLocalStorageState";
+import { useImmerLocalStorageState } from "@/public/resources/lib/hook/useImmerLocalStorageState";
 
 export default function App({ Component, pageProps }) {
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
+    "art-pieces-info",
+    { defaultValue: [] }
+  );
   const fetcher = async (url) => {
     const res = await fetch(url);
     if (!res.ok) {
@@ -32,6 +36,7 @@ export default function App({ Component, pageProps }) {
       setArtPiecesInfo([...artPiecesInfo, { slug, isFavorite: true }]);
     }
   }
+
   return (
     <>
       <GlobalStyle />
@@ -39,7 +44,8 @@ export default function App({ Component, pageProps }) {
         <Component
           {...pageProps}
           pieces={pieces}
-          handleToggleFavorite={handleToggleFavorite}
+          artPiecesInfo={artPiecesInfo}
+          onToggleFavorite={handleToggleFavorite}
         />
       </Layout>
     </>
