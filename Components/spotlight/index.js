@@ -1,11 +1,25 @@
 import React from "react";
 import Image from "next/image";
+import FavoriteButton from "../FavoriteButton";
 
-export function Spotlight({ randomPieceObj }) {
-  const { imageSource, artist } = randomPieceObj;
+export function Spotlight({
+  randomPieceObj,
+  isFavorite,
+  onToggleFavorite,
+  artPiecesInfo,
+}) {
+  const { imageSource, artist, slug } = randomPieceObj;
+  // console.log(slug);
   return (
     <>
       <h1>Hi from SpotLight</h1>
+      <FavoriteButton
+        slug={slug}
+        isFavorite={
+          artPiecesInfo.find((piece) => piece.slug === slug)?.isFavorite
+        }
+        onToggleFavorite={() => onToggleFavorite(slug)}
+      />
       <p>{artist}</p>
       <Image
         src={imageSource}

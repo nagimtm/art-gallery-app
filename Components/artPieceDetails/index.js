@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import FavoriteButton from "../FavoriteButton";
 
 export default function ArtPieceDetails({
   slug,
@@ -8,10 +9,16 @@ export default function ArtPieceDetails({
   artist,
   year,
   genre,
+  isFavorite,
+  onToggleFavorite,
 }) {
   return (
     <li key={slug}>
       <h2>{title}</h2>
+      <FavoriteButton
+        isFavorite={isFavorite}
+        onToggleFavorite={() => onToggleFavorite(slug)}
+      />
       <Image src={imageSource} alt="img_title" height={144} width={144}></Image>
       <p>{artist}</p>
       <p>{year}</p>

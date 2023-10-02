@@ -1,13 +1,19 @@
-import ArtPiecesPreview from "../artPiecesPreview";
-import Link from "next/link";
-export default function ArtPieces({ pieces }) {
+import ArtPiecePreview from "../ArtPiecePreview";
+export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
   return (
     <ul>
-      {pieces.map((piece) => (
+      {pieces?.map((piece) => (
         <li key={piece.slug}>
-          <Link href={`/art-pieces/${piece.slug}`} piece={piece}>
-            <ArtPiecesPreview piece={piece} />
-          </Link>
+          <ArtPiecePreview
+            piece={piece}
+            slug={piece.slug}
+            onToggleFavorite={() => onToggleFavorite(piece.slug)}
+            artPiecesInfo={artPiecesInfo}
+            isFavorite={
+              artPiecesInfo?.find((artPiece) => artPiece.slug === piece.slug)
+                ?.isFavorite
+            }
+          />
         </li>
       ))}
     </ul>

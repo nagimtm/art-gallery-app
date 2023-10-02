@@ -1,6 +1,10 @@
-import { Spotlight } from "@/Components/spotlight";
+import { Spotlight } from "@/Components/Spotlight";
 
-export default function SpotLightPage({ pieces }) {
+export default function SpotLightPage({
+  pieces,
+  onToggleFavorite,
+  artPiecesInfo,
+}) {
   function randomArt(maxNum) {
     const randomArtindex = Math.floor(Math.random() * maxNum);
     return pieces[randomArtindex];
@@ -9,7 +13,11 @@ export default function SpotLightPage({ pieces }) {
   const randomPieceObj = randomArt(piecesArrayLength);
   return (
     <>
-      <Spotlight randomPieceObj={randomPieceObj} />
+      <Spotlight
+        randomPieceObj={randomPieceObj}
+        onToggleFavorite={onToggleFavorite}
+        artPiecesInfo={artPiecesInfo}
+      />
     </>
   );
 }
