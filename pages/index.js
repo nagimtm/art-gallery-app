@@ -1,5 +1,5 @@
 import { Spotlight } from "@/Components/Spotlight";
-
+import Head from "next/head";
 export default function SpotLightPage({
   pieces,
   onToggleFavorite,
@@ -13,6 +13,9 @@ export default function SpotLightPage({
   const randomPieceObj = randomArt(piecesArrayLength);
   return (
     <>
+      <Head>
+        <title>Art Gallery - Spotlight</title>
+      </Head>
       <Spotlight
         randomPieceObj={randomPieceObj}
         onToggleFavorite={onToggleFavorite}

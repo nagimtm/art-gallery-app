@@ -1,4 +1,4 @@
-import Layout from "@/Components/Layout/Layout";
+import Layout from "@/Components/Layout/index.js";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import { useImmerLocalStorageState } from "@/public/resources/lib/hook/useImmerLocalStorageState";
@@ -60,17 +60,15 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <>
+    <Layout>
       <GlobalStyle />
-      <Layout>
-        <Component
-          {...pageProps}
-          pieces={pieces}
-          artPiecesInfo={artPiecesInfo}
-          onToggleFavorite={handleToggleFavorite}
-          storeCommentedArtPiece={storeCommentedArtPiece}
-        />
-      </Layout>
-    </>
+      <Component
+        {...pageProps}
+        pieces={pieces}
+        artPiecesInfo={artPiecesInfo}
+        onToggleFavorite={handleToggleFavorite}
+        storeCommentedArtPiece={storeCommentedArtPiece}
+      />
+    </Layout>
   );
 }
