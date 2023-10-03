@@ -6,25 +6,30 @@ export default function ArtPieceDetailsPage({
   pieces,
   artPiecesInfo,
   onToggleFavorite,
+  storeCommentedArtPiece,
 }) {
   const [artDetailViewer, setArtDetailViewer] = useState(null);
   const router = useRouter();
   const { slug } = router.query;
+
   useEffect(() => {
     setArtDetailViewer(pieces.find((piece) => piece.slug === slug));
   }, [slug, pieces, setArtDetailViewer]);
+
+  const artPieceComments = artPiecesInfo?.find(
+    (piece) => piece?.slug === artDetailViewer?.slug
+  )?.comments;
+
   return (
     <ArtPieceDetails
-      imageSource={artDetailViewer?.imageSource}
-      title={artDetailViewer?.title}
-      artist={artDetailViewer?.artist}
-      year={artDetailViewer?.year}
-      genre={artDetailViewer?.genre}
+      artDetailViewer={artDetailViewer}
       isFavorite={
         artPiecesInfo.find((piece) => piece.slug === artDetailViewer?.slug)
           ?.isFavorite
       }
       onToggleFavorite={() => onToggleFavorite(artDetailViewer.slug)}
+      storeCommentedArtPiece={storeCommentedArtPiece}
+      artPieceComments={artPieceComments}
     />
   );
 }

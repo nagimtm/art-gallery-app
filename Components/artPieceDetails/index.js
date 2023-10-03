@@ -1,31 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "../FavoriteButton";
+import CommentForm from "../CommentForm";
+import Comments from "../Comments";
 
 export default function ArtPieceDetails({
-  slug,
-  imageSource,
-  title,
-  artist,
-  year,
-  genre,
+  artDetailViewer,
   isFavorite,
   onToggleFavorite,
+  storeCommentedArtPiece,
+  artPieceComments,
 }) {
   return (
-    <li key={slug}>
-      <h2>{title}</h2>
-      <FavoriteButton
-        isFavorite={isFavorite}
-        onToggleFavorite={() => onToggleFavorite(slug)}
-      />
-      <Image src={imageSource} alt="img_title" height={144} width={144}></Image>
-      <p>{artist}</p>
-      <p>{year}</p>
-      <p>{genre}</p>
-      <Link href="/art-pieces">
-        <button>Go Back</button>
-      </Link>
-    </li>
+    <ul>
+      <li key={artDetailViewer?.slug}>
+        <h2>{artDetailViewer?.name}</h2>
+        <FavoriteButton
+          isFavorite={isFavorite}
+          onToggleFavorite={() => onToggleFavorite(artDetailViewer?.slug)}
+        />
+        <Image
+          src={artDetailViewer?.imageSource}
+          alt="img_title"
+          height={144}
+          width={144}
+          loading="lazy"
+        ></Image>
+        <p>{artDetailViewer?.artist}</p>
+        <p>{artDetailViewer?.year}</p>
+        <p>{artDetailViewer?.genre}</p>
+        <Link href="/art-pieces">
+          <button>Go Back</button>
+        </Link>
+      </li>
+      <li>
+        {artPieceComments && <Comments artPieceComments={artPieceComments} />}
+        <CommentForm
+          storeCommentedArtPiece={storeCommentedArtPiece}
+          slug={artDetailViewer?.slug}
+        />
+      </li>
+    </ul>
   );
 }
