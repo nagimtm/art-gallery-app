@@ -1,7 +1,24 @@
 import ArtPiecePreview from "../ArtPiecePreview";
+import styled from "styled-components";
+
+const List = styled.ul`
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+
+  li {
+    width: 30rem;
+    min-width: 10rem;
+    height: 30rem;
+    margin-bottom: 70px;
+  }
+`;
 export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
   return (
-    <ul>
+    <List>
       {pieces?.map((piece) => (
         <li key={piece.slug}>
           <ArtPiecePreview
@@ -16,6 +33,6 @@ export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
           />
         </li>
       ))}
-    </ul>
+    </List>
   );
 }
