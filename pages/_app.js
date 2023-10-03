@@ -1,7 +1,6 @@
 import Layout from "@/Components/Layout/Layout";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
-// import { useImmerLocalStorageState } from "./useImmerLocalStorageState";
 import { useImmerLocalStorageState } from "@/public/resources/lib/hook/useImmerLocalStorageState";
 
 export default function App({ Component, pageProps }) {
@@ -9,6 +8,7 @@ export default function App({ Component, pageProps }) {
     "art-pieces-info",
     { defaultValue: [] }
   );
+  // const []
   const fetcher = async (url) => {
     const res = await fetch(url);
     if (!res.ok) {
@@ -37,6 +37,28 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  function storeCommentedArtPiece(slug, newComment) {
+    const artPiece = artPiecesInfo.find((piece) => piece.slug === slug);
+    if (artPiece) {
+      setArtPiecesInfo(
+        artPiecesInfo.map((info) => {
+          if (info.slug === slug) {
+            return info.comments
+              ? { ...info, comments: [...info.comments, newComment] }
+              : { ...info, comments: [newComment] };
+          } else {
+            return info;
+          }
+        })
+      );
+    } else {
+      setArtPiecesInfo([
+        ...artPiecesInfo,
+        { slug, isFavorite: false, comments: [newComment] },
+      ]);
+    }
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -46,6 +68,7 @@ export default function App({ Component, pageProps }) {
           pieces={pieces}
           artPiecesInfo={artPiecesInfo}
           onToggleFavorite={handleToggleFavorite}
+          storeCommentedArtPiece={storeCommentedArtPiece}
         />
       </Layout>
     </>
