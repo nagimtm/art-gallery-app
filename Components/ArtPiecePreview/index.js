@@ -57,7 +57,7 @@ export default function ArtPiecesPreview({
         ></StyledImage>
       </ImageContainer>
       <Caption id={`caption-${slug}`}>{`${artist}: ${name}`}</Caption>
-      <Link href={`art-pieces/${slug}`}>More Info</Link>
+      <Link href={`art-pieces/${slug}`}>Read more...</Link>
     </Figure>
   );
 }

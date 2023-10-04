@@ -36,20 +36,14 @@ const StyledImage = styled(Image)`
 `;
 
 const BackButton = styled.button`
-  // margin-top: 15px;
-  postion: sticky;
-  margin-left: -300%;
   background-color: white;
   text-decoration: none;
-  border: 2px solid black;
-  color: black;
+  border: 2px solid teal;
+  color: teal;
   font-size: 1.5rem;
-  border-radius: 50px;
-  display: inline;
+  border-radius: 25px;
   place-items: center;
-  widht: 5px;
-  height: 5px;
-  // padding: 0 0 0 0.1rem;
+  height: 45px;
 `;
 const Caption = styled.figcaption`
   positon: absolute;

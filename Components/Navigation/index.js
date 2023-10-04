@@ -1,14 +1,14 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 
 const NavLink = styled(Link)`
   text-docoration: none;
   padding: 0 0.3rem;
-  color: ${({ $isActive }) => ($isActive ? "var(--primary-color)" : "black")};
+  // background-color:
+  color: black;
   font-weight: bold;
   &:hover {
-    border-botton: 5px dotted var(--primary-color);
+    color: red;
   }
 `;
 
@@ -24,28 +24,27 @@ const List = styled.ul`
 `;
 
 export default function Navigation() {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <nav>
       <List>
         <li>
-          <NavLink href="/" $isActive={router.pathname === "/"}>
-            Spotlight
+          <NavLink
+            href="/"
+            activeStyle={{
+              color: "black",
+            }}
+          >
+            Spotlight{" "}
           </NavLink>
         </li>
         <li>
-          <NavLink
-            href="/art-pieces"
-            $isActive={router.pathname === "/art-pieces"}
-          >
+          <NavLink href="/art-pieces" activeClassName="selected">
             Art Pieces
           </NavLink>
         </li>
         <li>
-          <NavLink
-            href="/favorites"
-            $isActive={router.pathname === "/favorites"}
-          >
+          <NavLink href="/favorites" activeClassName="selected">
             Favorites
           </NavLink>
         </li>

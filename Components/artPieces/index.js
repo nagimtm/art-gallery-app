@@ -26,27 +26,21 @@ const List = styled.ul`
 `;
 export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
   return (
-    <>
-      <Head>
-        <title>Art Pieces</title>
-      </Head>
-      <Headline>Art Pieces</Headline>
-      <List>
-        {pieces?.map((piece) => (
-          <li key={piece.slug}>
-            <ArtPiecePreview
-              piece={piece}
-              slug={piece.slug}
-              onToggleFavorite={() => onToggleFavorite(piece.slug)}
-              artPiecesInfo={artPiecesInfo}
-              isFavorite={
-                artPiecesInfo?.find((artPiece) => artPiece.slug === piece.slug)
-                  ?.isFavorite
-              }
-            />
-          </li>
-        ))}
-      </List>
-    </>
+    <List>
+      {pieces?.map((piece) => (
+        <li key={piece.slug}>
+          <ArtPiecePreview
+            piece={piece}
+            slug={piece.slug}
+            onToggleFavorite={() => onToggleFavorite(piece.slug)}
+            artPiecesInfo={artPiecesInfo}
+            isFavorite={
+              artPiecesInfo?.find((artPiece) => artPiece.slug === piece.slug)
+                ?.isFavorite
+            }
+          />
+        </li>
+      ))}
+    </List>
   );
 }

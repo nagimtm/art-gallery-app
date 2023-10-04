@@ -18,7 +18,7 @@ const Section = styled.div`
 export default function Layout({ children }) {
   return (
     <Section>
-      <Headline></Headline>
+      <Headline>Art Gallery</Headline>
       <Main>{children}</Main>
       <Navigation />
     </Section>

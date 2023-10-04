@@ -4,11 +4,6 @@ import FavoriteButton from "../FavoriteButton";
 import styled from "styled-components";
 import Head from "next/head.js";
 
-const Headline = styled.h1`
-  text-align: center;
-  margin-top: 10px;
-`;
-
 const Section = styled.div`
   text-align: center;
   display: grid;
@@ -33,7 +28,6 @@ export function Spotlight({ randomPieceObj, onToggleFavorite, artPiecesInfo }) {
       <Head>
         <title>Art Gallery - Spotlight</title>
       </Head>
-      <Headline>Art Gallery - Spotlight</Headline>
       <Section>
         <ImageContainer>
           <FavoriteButton

@@ -20,13 +20,22 @@ const List = styled.ul`
   padding-left: 0;
 `;
 
+const Button = styled.button`
+  margin-left: 15px;
+`;
+
 export default function Comments({ artPieceComments }) {
   return (
     <Section>
       <Title>Comments</Title>
       <List role="list">
         {artPieceComments.map((comment, index) => (
-          <li key={index}>{comment}</li>
+          <li key={index}>
+            {comment}
+            <Button id={index} onClick={() => handleClick(index)}>
+              🗑️
+            </Button>
+          </li>
         ))}
       </List>
     </Section>

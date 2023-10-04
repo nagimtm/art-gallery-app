@@ -20,4 +20,7 @@ export default createGlobalStyle`
     color: var(--primary-color)
   }
   
+  .selected{
+    background-color: black;
+  }
 `;
