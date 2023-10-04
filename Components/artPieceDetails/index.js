@@ -5,7 +5,7 @@ import CommentForm from "../CommentForm";
 import Comments from "../Comments";
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,8 +13,8 @@ const Wrapper = styled.section`
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 80%;
-  height: 15rem;
+  width: 50%;
+  height: 20rem;
 `;
 
 const List = styled.ul`
@@ -36,24 +36,26 @@ const StyledImage = styled(Image)`
 `;
 
 const BackButton = styled.button`
-  margin-top: 15px;
+  // margin-top: 15px;
+  postion: sticky;
+  margin-left: -300%;
   background-color: white;
   text-decoration: none;
   border: 2px solid black;
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 50px;
-  display: grid;
+  display: inline;
   place-items: center;
   widht: 5px;
   height: 5px;
-  padding: 0 0 0 0.1rem;
+  // padding: 0 0 0 0.1rem;
 `;
 const Caption = styled.figcaption`
   positon: absolute;
   bottom: 0;
   left: 0;
-  width: 80%;
+  width: 50%;
   background-color: teal;
   color: white;
   padding: 0.5rem 0.3rem;
@@ -71,8 +73,14 @@ export default function ArtPieceDetails({
   artPieceComments,
   onBack,
 }) {
+  const { colors } = { ...artDetailViewer };
   return (
-    <Wrapper>
+    <Section>
+      <Link href="/art-pieces">
+        <BackButton type="button" onClick={onBack}>
+          ← Go Back
+        </BackButton>
+      </Link>
       <h2>{artDetailViewer?.name}</h2>
       <ImageContainer>
         <FavoriteButton
@@ -88,11 +96,6 @@ export default function ArtPieceDetails({
         ></StyledImage>
       </ImageContainer>
 
-      {/* <List role="list">
-        {color.map((color, index) => (
-          <Color key={index} color={color} />
-        ))}
-      </List> */}
       <Caption>
         <List>
           <li>{artDetailViewer?.artist}</li>
@@ -100,17 +103,24 @@ export default function ArtPieceDetails({
           <li>{artDetailViewer?.genre}</li>
         </List>
       </Caption>
-      {/* <li key={artDetailViewer?.slug}></li> */}
+      <List>
+        {colors?.map((color, index) => (
+          <li
+            key={index}
+            style={{
+              backgroundColor: `${color}`,
+              width: 20,
+              height: 20,
+              borderRadius: 30,
+            }}
+          ></li>
+        ))}
+      </List>
       {artPieceComments && <Comments artPieceComments={artPieceComments} />}
       <CommentForm
         storeCommentedArtPiece={storeCommentedArtPiece}
         slug={artDetailViewer?.slug}
       />
-      <Link href="/art-pieces">
-        <BackButton type="button" onClick={onBack}>
-          ← Go Back
-        </BackButton>
-      </Link>
-    </Wrapper>
+    </Section>
   );
 }

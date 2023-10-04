@@ -8,7 +8,6 @@ export default function App({ Component, pageProps }) {
     "art-pieces-info",
     { defaultValue: [] }
   );
-  // const []
   const fetcher = async (url) => {
     const res = await fetch(url);
     if (!res.ok) {
@@ -20,7 +19,7 @@ export default function App({ Component, pageProps }) {
     return res.json();
   };
   const URL = "https://example-apis.vercel.app/api/art";
-  const { data: pieces, error, isLoading } = useSWR(URL, fetcher);
+  const { data, error, isLoading } = useSWR(URL, fetcher);
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
@@ -64,7 +63,7 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <Component
         {...pageProps}
-        pieces={pieces}
+        pieces={data || isLoading}
         artPiecesInfo={artPiecesInfo}
         onToggleFavorite={handleToggleFavorite}
         storeCommentedArtPiece={storeCommentedArtPiece}

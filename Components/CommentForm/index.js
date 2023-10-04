@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Form = styled.form`
   display: grid;
   gap: 10px;
-  width: 60%;
+  width: 20%;
 `;
 
 const Label = styled.label`
@@ -35,7 +35,7 @@ export default function CommentForm({ storeCommentedArtPiece, slug }) {
   return (
     <Form onSubmit={handleSubmit} aria-label="add comments about art piece">
       <Label htmlFor="comment">Add comment:</Label>
-      <Textarea type="text" id="comment" name="comment" rows="3" required />
+      <Textarea type="text" id="comment" name="comment" rows="2" required />
       <Button type="submit">Send</Button>
     </Form>
   );

@@ -20,7 +20,6 @@ export default function FavoriteButton({ isFavorite, onToggleFavorite }) {
   return (
     <Button
       onClick={onToggleFavorite}
-      // $positionAbsolute={positionAbsolute}
       isFavorite={isFavorite}
       aria-label={isFavorite ? "unlike" : "like"}
     >

@@ -9,7 +9,7 @@ const Headline = styled.h1`
   text-align: center;
 `;
 
-const Wrapper = styled.div`
+const Section = styled.div`
   height: 100vh;
   display: grid;
   grid-template-row: 5rem auto, 4rem;
@@ -17,10 +17,10 @@ const Wrapper = styled.div`
 
 export default function Layout({ children }) {
   return (
-    <Wrapper>
-      <Headline> Art Gallery</Headline>
+    <Section>
+      <Headline></Headline>
       <Main>{children}</Main>
       <Navigation />
-    </Wrapper>
+    </Section>
   );
 }

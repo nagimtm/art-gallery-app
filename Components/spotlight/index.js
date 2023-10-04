@@ -4,7 +4,12 @@ import FavoriteButton from "../FavoriteButton";
 import styled from "styled-components";
 import Head from "next/head.js";
 
-const Wrapper = styled.div`
+const Headline = styled.h1`
+  text-align: center;
+  margin-top: 10px;
+`;
+
+const Section = styled.div`
   text-align: center;
   display: grid;
   place-items: center;
@@ -25,10 +30,11 @@ export function Spotlight({ randomPieceObj, onToggleFavorite, artPiecesInfo }) {
   const { imageSource, artist, slug } = randomPieceObj;
   return (
     <>
-      <Wrapper>
-        <Head>
-          <title>Art Gallery - Spotlight</title>
-        </Head>
+      <Head>
+        <title>Art Gallery - Spotlight</title>
+      </Head>
+      <Headline>Art Gallery - Spotlight</Headline>
+      <Section>
         <ImageContainer>
           <FavoriteButton
             slug={slug}
@@ -47,7 +53,7 @@ export function Spotlight({ randomPieceObj, onToggleFavorite, artPiecesInfo }) {
             alt={`randomArt_${artist}`}
           ></StyledImage>
         </ImageContainer>
-      </Wrapper>
+      </Section>
     </>
   );
 }
