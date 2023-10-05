@@ -1,4 +1,4 @@
-import { Spotlight } from "@/Components/Spotlight";
+import { Spotlight } from "@/Components/spotlight";
 import Head from "next/head";
 export default function SpotLightPage({
   pieces,

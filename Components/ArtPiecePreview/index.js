@@ -1,5 +1,5 @@
 import Image from "next/image";
-import FavoriteButton from "../FavoriteButton";
+import FavoriteButton from "../favoriteButton";
 import Link from "next/link";
 import styled from "styled-components";
 

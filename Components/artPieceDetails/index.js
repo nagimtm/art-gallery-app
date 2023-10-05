@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import FavoriteButton from "../FavoriteButton";
+import FavoriteButton from "../favoriteButton";
 import CommentForm from "../CommentForm";
 import Comments from "../Comments";
 import styled from "styled-components";

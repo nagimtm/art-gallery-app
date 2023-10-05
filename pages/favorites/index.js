@@ -1,4 +1,4 @@
-import ArtPieces from "@/Components/ArtPieces";
+import ArtPieces from "@/Components/artPieces";
 export default function ArtPiecesPages({
   artPiecesInfo,
   pieces,

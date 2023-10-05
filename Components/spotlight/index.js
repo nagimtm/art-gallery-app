@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import FavoriteButton from "../FavoriteButton";
+import FavoriteButton from "../favoriteButton";
 import styled from "styled-components";
 import Head from "next/head.js";
 
